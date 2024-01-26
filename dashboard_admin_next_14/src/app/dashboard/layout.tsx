@@ -14,46 +14,7 @@ export default function DashboardLayout({
         <Sidebar />
       </div>
       {/* Content */}
-      <div className="col-span-4 max-h-screen flex-1 overflow-y-scroll p-5">
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
-        <Navbar />
+      <div className="col-span-4 max-h-screen overflow-y-scroll p-5">
         <Navbar />
         {children}
       </div>
