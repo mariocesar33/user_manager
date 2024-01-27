@@ -1,4 +1,5 @@
 import { MonthRevenueCard } from './month-revenue-card'
+import { Transactions } from './transactions'
 
 export default function Dashboard() {
   return (
@@ -10,7 +11,7 @@ export default function Dashboard() {
           <MonthRevenueCard />
         </div>
 
-        <div>Latest Trasactions</div>
+        <Transactions />
 
         <div>week Recap</div>
       </div>
