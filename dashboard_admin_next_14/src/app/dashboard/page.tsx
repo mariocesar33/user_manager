@@ -1,3 +1,5 @@
+import { Chart } from '@/components/chart'
+
 import { MonthRevenueCard } from './month-revenue-card'
 import { Transactions } from './transactions'
 
@@ -13,7 +15,7 @@ export default function Dashboard() {
 
         <Transactions />
 
-        <div>week Recap</div>
+        <Chart />
       </div>
 
       <div className="col-span-1">Coluna direita</div>
