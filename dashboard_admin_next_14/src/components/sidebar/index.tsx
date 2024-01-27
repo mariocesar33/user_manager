@@ -5,17 +5,19 @@ import {
   HelpCircle,
   LayoutDashboard,
   LineChart,
+  LogOut,
   Settings,
   ShoppingBag,
   UsersRound,
 } from 'lucide-react'
 
+import { Button } from '../ui/button'
 import { NavItem } from './nave-item'
 import { Profile } from './profile'
 
 export function Sidebar() {
   return (
-    <aside className="w-full space-y-3">
+    <aside className="w-full space-y-4">
       <div className="">
         <Profile />
       </div>
@@ -41,6 +43,11 @@ export function Sidebar() {
         <NavItem href="/dashboard/settings" title="Settings" icon={Settings} />
         <NavItem href="/dashboard/help" title="Help" icon={HelpCircle} />
       </nav>
+
+      <Button className="flex w-full items-center justify-start gap-2 bg-transparent text-white hover:bg-slate-600">
+        <LogOut className="h-5 w-5" />
+        Logout
+      </Button>
     </aside>
   )
 }
