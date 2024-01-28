@@ -20,7 +20,7 @@ export default function Dashboard() {
       </div>
 
       <div className="col-span-1">
-        <div className=" flex max-w-max flex-col gap-5">
+        <div className="fixed mr-10 flex flex-col gap-5">
           <RightbarOne />
           <Rightbar />
         </div>
