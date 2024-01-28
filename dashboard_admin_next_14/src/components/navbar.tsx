@@ -1,9 +1,9 @@
 'use client'
 
-import { Bell, Globe, MessageSquareText, Search } from 'lucide-react'
+import { Bell, Globe, MessageSquareText } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
-import { Input } from './ui/input'
+import { Search } from './search'
 
 export function Navbar() {
   const pathName = usePathname()
@@ -15,14 +15,7 @@ export function Navbar() {
       </h1>
 
       <div className="flex items-center gap-5">
-        <div className="flex items-center gap-1.5 rounded-sm bg-slate-600 p-2.5">
-          <Search className="h-5 w-5" />
-          <Input
-            placeholder="Procura..."
-            type="text"
-            className="h-5 border-none bg-transparent"
-          />
-        </div>
+        <Search />
 
         <div className="flex items-center space-x-5">
           <MessageSquareText className="h-5 w-5" />
