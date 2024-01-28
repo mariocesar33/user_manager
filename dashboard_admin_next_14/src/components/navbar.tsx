@@ -15,7 +15,7 @@ export function Navbar() {
       </h1>
 
       <div className="flex items-center gap-5">
-        <Search />
+        <Search placeholder="Procura..." />
 
         <div className="flex items-center space-x-5">
           <MessageSquareText className="h-5 w-5" />

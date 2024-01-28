@@ -19,11 +19,10 @@ import { Profile } from './profile'
 export function Sidebar() {
   return (
     <aside className="flex w-full flex-col justify-between">
-      <div className="">
-        <Profile />
-      </div>
-
-      <div>
+      <div className="flex flex-col gap-3">
+        <div className="">
+          <Profile />
+        </div>
         <nav className="w-full space-y-1">
           <NavItem href="/dashboard" title="Dashboard" icon={LayoutDashboard} />
           <NavItem
