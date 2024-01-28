@@ -38,7 +38,7 @@ export function Transactions() {
                 className="h-8 w-8 rounded-full"
               />
 
-              <span className="truncate text-xs">Mário César Silva</span>
+              <span>Mário César Silva</span>
             </TableCell>
             <TableCell>
               <TransactionStatus status="done" />
@@ -57,7 +57,7 @@ export function Transactions() {
                 className="h-8 w-8 rounded-full"
               />
 
-              <span className="truncate text-xs">Mário César Silva</span>
+              <span>Mário César Silva</span>
             </TableCell>
             <TableCell>
               <TransactionStatus status="canceled" />
@@ -76,7 +76,7 @@ export function Transactions() {
                 className="h-8 w-8 rounded-full"
               />
 
-              <span className="truncate text-xs">Mário César Silva</span>
+              <span>Diego Fernandes</span>
             </TableCell>
             <TableCell>
               <TransactionStatus status="done" />
@@ -95,7 +95,7 @@ export function Transactions() {
                 className="h-8 w-8 rounded-full"
               />
 
-              <span className="truncate text-xs">Mário César Silva</span>
+              <span>Mário César Silva</span>
             </TableCell>
             <TableCell>
               <TransactionStatus status="pending" />
@@ -114,7 +114,7 @@ export function Transactions() {
                 className="h-8 w-8 rounded-full"
               />
 
-              <span className="truncate text-xs">Mário César Silva</span>
+              <span>Mário César Silva</span>
             </TableCell>
             <TableCell>
               <TransactionStatus status="canceled" />

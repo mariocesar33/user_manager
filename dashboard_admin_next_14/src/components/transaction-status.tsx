@@ -25,9 +25,7 @@ export function TransactionStatus({ status }: TransactionsStatusProps) {
         <span className="h-2 w-2 rounded-full bg-emerald-500" />
       )}
 
-      <span className="font-medium text-muted-foreground">
-        {transactionStatusMap[status]}
-      </span>
+      <span className="font-medium">{transactionStatusMap[status]}</span>
     </div>
   )
 }
