@@ -20,7 +20,7 @@ export default function Users() {
       <div className="flex items-center justify-between  pl-4 pr-7">
         <Search placeholder="Procurar por um usuário" />
         <Link
-          href="/dashbord/users/add"
+          href="/dashboard/users/add"
           className="flex h-8 items-center gap-1 rounded-sm border-2 border-gray-600 px-2"
         >
           <Plus className="h-4 w-4" />
