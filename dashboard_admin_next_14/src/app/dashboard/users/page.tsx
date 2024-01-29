@@ -35,7 +35,7 @@ export default function Users() {
               <TableHead className="w-[400px]">Name</TableHead>
               <TableHead className="w-[250px]">Email</TableHead>
               <TableHead className="w-[250px]">Criado em</TableHead>
-              <TableHead className="w-[100px]">Tipo de conta</TableHead>
+              <TableHead className="w-[100px]">privilégio</TableHead>
               <TableHead className="w-[40px]">Estado</TableHead>
               <TableHead className="w-[80px]"></TableHead>
               <TableHead className="w-[80px]"></TableHead>
