@@ -60,9 +60,11 @@ export default function Users() {
               <TableCell>cliente</TableCell>
               <TableCell>ativo</TableCell>
               <TableCell>
-                <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                  Ver
-                </Button>
+                <Link href="/dashboard/users/silva">
+                  <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
+                    Ver
+                  </Button>
+                </Link>
               </TableCell>
               <TableCell>
                 <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
