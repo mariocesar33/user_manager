@@ -18,7 +18,7 @@ interface UserNameProps {
   }
 }
 
-export default function UserName({ params }: UserNameProps) {
+export default function SingleUser({ params }: UserNameProps) {
   return (
     <div className="mt-5 flex gap-5   ">
       <div className="max-h-64 rounded-sm bg-muted p-5">
@@ -30,7 +30,7 @@ export default function UserName({ params }: UserNameProps) {
           className="h-52 w-52 rounded-md"
           quality={100}
         />
-        <p>Bem vindo(a)</p>
+        <p>Bem vindo(a) - {params.username}</p>
       </div>
 
       <form className="flex-1 space-y-1 rounded-sm bg-muted p-5" action="">
@@ -81,7 +81,7 @@ export default function UserName({ params }: UserNameProps) {
         <div className="space-y-1">
           <Label htmlFor="admin">É administrador?</Label>
           <Select defaultValue="false" name="cat">
-            <SelectTrigger className="h-14" id="admin">
+            <SelectTrigger id="admin">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -94,7 +94,7 @@ export default function UserName({ params }: UserNameProps) {
         <div className="space-y-1">
           <Label htmlFor="active">Esta ativo?</Label>
           <Select defaultValue="false" name="cat">
-            <SelectTrigger defaultValue="default" className="h-14" id="active">
+            <SelectTrigger defaultValue="default" id="active">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

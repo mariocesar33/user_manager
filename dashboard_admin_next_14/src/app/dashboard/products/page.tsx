@@ -62,9 +62,11 @@ export default function Products() {
               <TableCell>30/01/2024</TableCell>
               <TableCell>20</TableCell>
               <TableCell>
-                <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                  Ver
-                </Button>
+                <Link href="/dashboard/products/katxupa">
+                  <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
+                    Ver
+                  </Button>
+                </Link>
               </TableCell>
               <TableCell>
                 <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
@@ -90,9 +92,11 @@ export default function Products() {
               <TableCell>30/01/2024</TableCell>
               <TableCell>20</TableCell>
               <TableCell>
-                <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                  Ver
-                </Button>
+                <Link href="/dashboard/products/katxupa">
+                  <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
+                    Ver
+                  </Button>
+                </Link>
               </TableCell>
               <TableCell>
                 <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
