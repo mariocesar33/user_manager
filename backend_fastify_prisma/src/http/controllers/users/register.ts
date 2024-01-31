@@ -11,7 +11,7 @@ const registerBodySchema = z.object({
   phone: z.string(),
   address: z.string(),
   role: z.enum(['ADMIN', 'CLIENT']).default('CLIENT'),
-  stato: z.boolean().default(true),
+  stato: z.coerce.boolean().default(true),
   avatarURL: z.string().url(),
 })
 

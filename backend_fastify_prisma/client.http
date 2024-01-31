@@ -1,0 +1,17 @@
+@baseUrl = http://localhost:3333
+
+# @name register_user
+Post {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Mário César",
+  "username": "mariocesar",
+  "email": "mario@gmail.com",
+  "password": "123456",
+  "phone": "5681238",
+  "address": "Achada G. Trás",
+  "role": "ADMIN",
+  "stato": "true",
+  "avatarURL": "https://github.com/mariocesar33.png"
+}
