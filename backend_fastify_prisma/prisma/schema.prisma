@@ -15,17 +15,18 @@ enum Role {
 model User {
   id        String    @id @default(uuid())
   name      String
-  username  String    @unique
-  email     String    @unique
+  username  String
+  email     String
   password  String
   phone     String
   address   String
   role      Role      @default(CLIENT)
   stato     Boolean   @default(true)
-  avatarURL String    @map("avatar_url")
+  avatarURL String?   @map("avatar_url")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
 
+  @@unique([username, email])
   @@map("users")
 }
 
@@ -38,7 +39,7 @@ model Product {
   color       String
   price       Decimal   @default(0)
   stock       Decimal   @default(0)
-  imgURL      String    @map("img_url")
+  imgURL      String?   @map("img_url")
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime? @updatedAt @map("updated_at")
 
