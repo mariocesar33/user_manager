@@ -62,16 +62,15 @@ export default function AddProduct() {
             placeholder="preço"
           />
 
-          <Input name="color" className="h-14" type="color" placeholder="Cor" />
+          <Input name="text" className="h-14" type="text" placeholder="Cor" />
         </div>
 
         <div className="flex w-96 flex-col space-y-5">
-          <Select defaultValue="default" name="cat">
+          <Select name="cat">
             <SelectTrigger defaultValue="default" className="h-14">
-              <SelectValue />
+              <SelectValue placeholder="Escolha uma categoria" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="default">Escolha uma categoria</SelectItem>
               <SelectItem value="pending">Pendente</SelectItem>
               <SelectItem value="canceled">Cancelado</SelectItem>
               <SelectItem value="processing">Em preparo</SelectItem>

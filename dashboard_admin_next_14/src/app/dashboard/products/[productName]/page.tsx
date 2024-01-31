@@ -1,4 +1,5 @@
 'use client'
+
 import Image from 'next/image'
 import { ChangeEvent, useState } from 'react'
 
@@ -13,8 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-
-import iphone from '../../../../public/iphone.jpg'
+import iphone from '@/public/iphone.jpg'
 
 interface UseNumericInput {
   value: string
@@ -87,8 +87,8 @@ export default function SingleProduct({ params }: SingleProduct) {
         <div className="space-y-1">
           <Label>Cor</Label>
           <Input
-            type="color"
-            defaultValue="#000000"
+            type="text"
+            defaultValue="preto"
             className="border border-gray-600"
           />
         </div>
