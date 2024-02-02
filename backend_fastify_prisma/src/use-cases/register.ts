@@ -16,11 +16,11 @@ interface RegisterUseCaseRequest {
   avatarURL?: string
 }
 
-interface GetUserProfileUseCaseResponse {
+interface RegisterUseCaseResponse {
   user: User
 }
 
-export class GetUserProfileUseCase {
+export class RegisterUseCase {
   async execute({
     name,
     username,
@@ -31,7 +31,7 @@ export class GetUserProfileUseCase {
     role,
     stato,
     avatarURL,
-  }: RegisterUseCaseRequest): Promise<GetUserProfileUseCaseResponse> {
+  }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     const userExist = await prisma.user.findUnique({
       where: {
         username_email: {
