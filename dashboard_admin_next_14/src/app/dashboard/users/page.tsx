@@ -76,16 +76,16 @@ export default function Users() {
             <TableRow>
               <TableCell className="flex items-center gap-2">
                 <Image
-                  src="https://github.com/mariocesar33.png"
+                  src="https://github.com/maykbrito.png"
                   alt=""
                   width={40}
                   height={40}
                   className="h-8 w-8 rounded-full"
                 />
 
-                <span>Mário César Silva</span>
+                <span>Mayk Brito</span>
               </TableCell>
-              <TableCell>mario@gmail.com</TableCell>
+              <TableCell>mayk@gmail.com</TableCell>
               <TableCell>Nov 04 2023</TableCell>
               <TableCell>cliente</TableCell>
               <TableCell>ativo</TableCell>
@@ -132,16 +132,16 @@ export default function Users() {
             <TableRow>
               <TableCell className="flex items-center gap-2">
                 <Image
-                  src="https://github.com/mariocesar33.png"
+                  src="https://github.com/orodrigogo.png"
                   alt=""
                   width={40}
                   height={40}
                   className="h-8 w-8 rounded-full"
                 />
 
-                <span>Mário César Silva</span>
+                <span>Rodrigo Gonçalves</span>
               </TableCell>
-              <TableCell>mario@gmail.com</TableCell>
+              <TableCell>rodrigo@gmail.com</TableCell>
               <TableCell>Nov 04 2023</TableCell>
               <TableCell>cliente</TableCell>
               <TableCell>ativo</TableCell>
