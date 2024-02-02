@@ -48,8 +48,15 @@ Authorization: Bearer {{authToken}}
 
 ###
 
+# @name fetch_user
+GET {{baseUrl}}/user
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
 # @name create_user_1
-Post {{baseUrl}}/create-user
+Post {{baseUrl}}/user
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
@@ -68,7 +75,7 @@ Authorization: Bearer {{authToken}}
 ###
 
 # @name create_user_2
-Post {{baseUrl}}/create-user
+Post {{baseUrl}}/user
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
@@ -87,7 +94,7 @@ Authorization: Bearer {{authToken}}
 ###
 
 # @name create_user_3
-Post {{baseUrl}}/create-user
+Post {{baseUrl}}/user
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
