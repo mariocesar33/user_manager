@@ -55,6 +55,13 @@ Authorization: Bearer {{authToken}}
 
 ###
 
+# @name get_user_by_username
+GET {{baseUrl}}/user/mariocesar
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
 # @name create_user_1
 Post {{baseUrl}}/user
 Content-Type: application/json

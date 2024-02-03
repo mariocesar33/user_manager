@@ -7,6 +7,7 @@ export async function users(request: FastifyRequest, reply: FastifyReply) {
   const { users } = await fetchUsers.execute()
 
   const newDada = users.map((user) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userWithoutPassword } = user
     return userWithoutPassword
   })
