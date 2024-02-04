@@ -49,7 +49,7 @@ Authorization: Bearer {{authToken}}
 ###
 
 # @name fetch_user
-GET {{baseUrl}}/user/diego
+GET {{baseUrl}}/user?page=1&name=die
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 

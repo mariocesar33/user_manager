@@ -4,14 +4,20 @@ import { z } from 'zod'
 
 const usersBodySchema = z.object({
   name: z.string().optional(),
+  page: z
+    .string()
+    .optional()
+    .default('1')
+    .transform(Number)
+    .pipe(z.number().min(1)),
 })
 
-export async function users(request: FastifyRequest, reply: FastifyReply) {
+export async function fetchUsers(request: FastifyRequest, reply: FastifyReply) {
   const fetchUsers = new FetchUsers()
 
-  const { name } = usersBodySchema.parse(request.params)
+  const { name, page } = usersBodySchema.parse(request.query)
 
-  const result = await fetchUsers.execute({ name })
+  const result = await fetchUsers.execute({ name, page })
 
   const users = result.users.map((user) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

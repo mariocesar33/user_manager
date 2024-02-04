@@ -7,7 +7,7 @@ import { refresh } from './users/refresh-token'
 
 import { profile } from './users/profile'
 import { createUser } from './users/create-users'
-import { users } from './users/users'
+import { fetchUsers } from './users/fetch-users'
 
 export async function routes(app: FastifyInstance) {
   app.post('/users', register)
@@ -17,5 +17,5 @@ export async function routes(app: FastifyInstance) {
 
   app.get('/me', { onRequest: [verifyJWT] }, profile)
   app.post('/user', { onRequest: [verifyJWT] }, createUser)
-  app.get('/user/:name', users)
+  app.get('/user', fetchUsers)
 }

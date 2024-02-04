@@ -2,6 +2,7 @@ import dayjs from 'dayjs'
 import { Plus } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { z } from 'zod'
 
 import { fetchUsers } from '@/actions/fetch-users'
 import { Pagination } from '@/components/pagination'
@@ -19,15 +20,17 @@ import {
 interface UsersProps {
   searchParams: {
     q: string
+    page: string
   }
 }
 
 export default async function Users({ searchParams }: UsersProps) {
-  const { q } = searchParams
+  const { q, page } = searchParams
 
   const query = q || ''
+  const pageIndex = page || '1'
 
-  const { users } = await fetchUsers({ name: query })
+  const { users } = await fetchUsers({ name: query, pageIndex })
 
   return (
     <div className="mt-5 flex flex-col gap-2 rounded-sm bg-muted p-4">

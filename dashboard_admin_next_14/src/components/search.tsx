@@ -16,6 +16,8 @@ export function Search({ placeholder }: { placeholder: string }) {
     // Criar novo URL
     const params = new URLSearchParams(searchParams)
 
+    params.set('page', '1')
+
     if (event.target.value) {
       // params.set('q', event.target.value)
       event.target.value.length > 2 && params.set('q', event.target.value)

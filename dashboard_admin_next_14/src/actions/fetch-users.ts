@@ -20,10 +20,13 @@ export interface FetchUsersResponse {
 
 export interface FetchUsersRequest {
   name?: string
+  pageIndex: string
 }
 
-export async function fetchUsers({ name }: FetchUsersRequest) {
-  const response = await api.get<FetchUsersResponse>(`/user/${name}`)
+export async function fetchUsers({ name, pageIndex }: FetchUsersRequest) {
+  const response = await api.get<FetchUsersResponse>(
+    `/user?page=${pageIndex}&name=${name}`,
+  )
 
   return response.data
 }

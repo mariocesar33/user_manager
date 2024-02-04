@@ -3,6 +3,7 @@ import { User } from '@prisma/client'
 
 interface FetchUsersRequest {
   name?: string
+  page: number
 }
 
 interface FetchUsersResponse {
@@ -10,10 +11,13 @@ interface FetchUsersResponse {
 }
 
 export class FetchUsers {
-  async execute({ name }: FetchUsersRequest): Promise<FetchUsersResponse> {
+  async execute({
+    name,
+    page,
+  }: FetchUsersRequest): Promise<FetchUsersResponse> {
     let users
 
-    console.log(name)
+    const perPage = 2
 
     if (name) {
       users = await prisma.user.findMany({
@@ -23,9 +27,14 @@ export class FetchUsers {
             startsWith: name,
           },
         },
+        take: perPage,
+        skip: (page - 1) * perPage,
       })
     } else {
-      users = await prisma.user.findMany()
+      users = await prisma.user.findMany({
+        take: perPage,
+        skip: (page - 1) * perPage,
+      })
     }
 
     return {
