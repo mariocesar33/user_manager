@@ -1,16 +1,35 @@
 import { prisma } from '@/lib/prisma'
 import { User } from '@prisma/client'
 
+interface FetchUsersRequest {
+  name?: string
+}
+
 interface FetchUsersResponse {
-  data: User[]
+  users: User[]
 }
 
 export class FetchUsers {
-  async execute(): Promise<FetchUsersResponse> {
-    const data = await prisma.user.findMany()
+  async execute({ name }: FetchUsersRequest): Promise<FetchUsersResponse> {
+    let users
+
+    console.log(name)
+
+    if (name) {
+      users = await prisma.user.findMany({
+        where: {
+          name: {
+            mode: 'insensitive',
+            startsWith: name,
+          },
+        },
+      })
+    } else {
+      users = await prisma.user.findMany()
+    }
 
     return {
-      data,
+      users,
     }
   }
 }

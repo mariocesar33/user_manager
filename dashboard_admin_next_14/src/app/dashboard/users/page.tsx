@@ -16,8 +16,18 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-export default async function Users() {
-  const { users } = await fetchUsers()
+interface UsersProps {
+  searchParams: {
+    q: string
+  }
+}
+
+export default async function Users({ searchParams }: UsersProps) {
+  const { q } = searchParams
+
+  const query = q || ''
+
+  const { users } = await fetchUsers({ name: query })
 
   return (
     <div className="mt-5 flex flex-col gap-2 rounded-sm bg-muted p-4">
@@ -59,7 +69,7 @@ export default async function Users() {
                       className="h-8 w-8 rounded-full"
                     />
 
-                    <span>{user.name}</span>
+                    <span className="capitalize">{user.name}</span>
                   </TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>

@@ -15,7 +15,13 @@ export function Search({ placeholder }: { placeholder: string }) {
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
     // Criar novo URL
     const params = new URLSearchParams(searchParams)
-    params.set('q', event.target.value)
+
+    if (event.target.value) {
+      // params.set('q', event.target.value)
+      event.target.value.length > 2 && params.set('q', event.target.value)
+    } else {
+      params.delete('q')
+    }
 
     replace(`${pathname}?${params}`)
   }

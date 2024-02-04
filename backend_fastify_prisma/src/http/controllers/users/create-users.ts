@@ -4,9 +4,12 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
 const createUserBodySchema = z.object({
-  name: z.string(),
-  username: z.string(),
-  email: z.string().email(),
+  name: z.string().transform((name) => name.toLowerCase()),
+  username: z.string().transform((username) => username.toLowerCase()),
+  email: z
+    .string()
+    .email()
+    .transform((email) => email.toLowerCase()),
   password: z.string().min(6),
   phone: z.string(),
   address: z.string(),

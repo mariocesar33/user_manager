@@ -14,12 +14,16 @@ interface User {
   updatedAt: string
 }
 
-export interface fetchUsersResponse {
+export interface FetchUsersResponse {
   users: User[]
 }
 
-export async function fetchUsers() {
-  const response = await api.get<fetchUsersResponse>('/user')
+export interface FetchUsersRequest {
+  name?: string
+}
+
+export async function fetchUsers({ name }: FetchUsersRequest) {
+  const response = await api.get<FetchUsersResponse>(`/user/${name}`)
 
   return response.data
 }
