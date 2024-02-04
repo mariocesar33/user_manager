@@ -2,15 +2,15 @@ import { prisma } from '@/lib/prisma'
 import { User } from '@prisma/client'
 
 interface FetchUsersResponse {
-  users: User[]
+  data: User[]
 }
 
 export class FetchUsers {
   async execute(): Promise<FetchUsersResponse> {
-    const users = await prisma.user.findMany()
+    const data = await prisma.user.findMany()
 
     return {
-      users,
+      data,
     }
   }
 }

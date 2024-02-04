@@ -1,9 +1,25 @@
+'use client'
+
 import { Search as SearchIcon } from 'lucide-react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { ChangeEvent } from 'react'
 
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 
 export function Search({ placeholder }: { placeholder: string }) {
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace } = useRouter()
+
+  function handleSearch(event: ChangeEvent<HTMLInputElement>) {
+    // Criar novo URL
+    const params = new URLSearchParams(searchParams)
+    params.set('q', event.target.value)
+
+    replace(`${pathname}?${params}`)
+  }
+
   return (
     <form className="flex items-center gap-1 rounded-sm bg-slate-600 p-1.5">
       <Button
@@ -13,9 +29,10 @@ export function Search({ placeholder }: { placeholder: string }) {
         <SearchIcon className="h-5 w-5" />
       </Button>
       <Input
+        className="h-5 border-none bg-transparent"
+        onChange={handleSearch}
         placeholder={placeholder}
         type="text"
-        className="h-5 border-none bg-transparent"
       />
     </form>
   )

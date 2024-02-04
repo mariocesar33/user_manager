@@ -18,6 +18,6 @@ export async function routes(app: FastifyInstance) {
 
   app.get('/me', { onRequest: [verifyJWT] }, profile)
   app.post('/user', { onRequest: [verifyJWT] }, createUser)
-  app.get('/user', { onRequest: [verifyJWT] }, users)
+  app.get('/user', users)
   app.get('/user/:username', { onRequest: [verifyJWT] }, getUserByUsername)
 }

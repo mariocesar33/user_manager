@@ -116,3 +116,22 @@ Authorization: Bearer {{authToken}}
   "stato": "true",
   "avatarURL": "https://github.com/orodrigogo.png"
 }
+
+###
+
+# @name create_user_4
+Post {{baseUrl}}/user
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Jakeliny Gracielly",
+  "username": "jakeliny",
+  "email": "jakeliny@gmail.com",
+  "password": "123456",
+  "phone": "21 994132-9999",
+  "address": "Rio Grande do Sul",
+  "role": "CLIENT",
+  "stato": "true",
+  "avatarURL": "https://github.com/jakeliny.png"
+}

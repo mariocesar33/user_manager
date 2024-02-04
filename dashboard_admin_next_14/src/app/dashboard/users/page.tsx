@@ -1,7 +1,9 @@
+import dayjs from 'dayjs'
 import { Plus } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { fetchUsers } from '@/actions/fetch-users'
 import { Pagination } from '@/components/pagination'
 import { Search } from '@/components/search'
 import { Button } from '@/components/ui/button'
@@ -14,7 +16,9 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-export default function Users() {
+export default async function Users() {
+  const { users } = await fetchUsers()
+
   return (
     <div className="mt-5 flex flex-col gap-2 rounded-sm bg-muted p-4">
       <div className="flex items-center justify-between  pl-4 pr-7">
@@ -43,147 +47,43 @@ export default function Users() {
           </TableHeader>
 
           <TableBody>
-            <TableRow>
-              <TableCell className="flex items-center gap-2">
-                <Image
-                  src="https://github.com/mariocesar33.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 rounded-full"
-                />
+            {users.map((user) => {
+              return (
+                <TableRow key={user.id}>
+                  <TableCell className="flex items-center gap-2">
+                    <Image
+                      src={user.avatarURL}
+                      alt=""
+                      width={40}
+                      height={40}
+                      className="h-8 w-8 rounded-full"
+                    />
 
-                <span>Mário César Silva</span>
-              </TableCell>
-              <TableCell>mario@gmail.com</TableCell>
-              <TableCell>Nov 04 2023</TableCell>
-              <TableCell>cliente</TableCell>
-              <TableCell>ativo</TableCell>
-              <TableCell>
-                <Link href="/dashboard/users/silva">
-                  <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                    Ver
-                  </Button>
-                </Link>
-              </TableCell>
-              <TableCell>
-                <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell className="flex items-center gap-2">
-                <Image
-                  src="https://github.com/maykbrito.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 rounded-full"
-                />
-
-                <span>Mayk Brito</span>
-              </TableCell>
-              <TableCell>mayk@gmail.com</TableCell>
-              <TableCell>Nov 04 2023</TableCell>
-              <TableCell>cliente</TableCell>
-              <TableCell>ativo</TableCell>
-              <TableCell>
-                <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                  Ver
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell className="flex items-center gap-2">
-                <Image
-                  src="https://github.com/diego3g.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 rounded-full"
-                />
-
-                <span>Diego Fernandes</span>
-              </TableCell>
-              <TableCell>diego@gmail.com</TableCell>
-              <TableCell>Nov 04 2023</TableCell>
-              <TableCell>cliente</TableCell>
-              <TableCell>ativo</TableCell>
-              <TableCell>
-                <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                  Ver
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell className="flex items-center gap-2">
-                <Image
-                  src="https://github.com/orodrigogo.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 rounded-full"
-                />
-
-                <span>Rodrigo Gonçalves</span>
-              </TableCell>
-              <TableCell>rodrigo@gmail.com</TableCell>
-              <TableCell>Nov 04 2023</TableCell>
-              <TableCell>cliente</TableCell>
-              <TableCell>ativo</TableCell>
-              <TableCell>
-                <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                  Ver
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell className="flex items-center gap-2">
-                <Image
-                  src="https://github.com/mariocesar33.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 rounded-full"
-                />
-
-                <span>Mário César Silva</span>
-              </TableCell>
-              <TableCell>mario@gmail.com</TableCell>
-              <TableCell>Nov 04 2023</TableCell>
-              <TableCell>cliente</TableCell>
-              <TableCell>ativo</TableCell>
-              <TableCell>
-                <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                  Ver
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
+                    <span>{user.name}</span>
+                  </TableCell>
+                  <TableCell>{user.email}</TableCell>
+                  <TableCell>
+                    {dayjs(user.createdAt).format('DD/MM/YYYY')}
+                  </TableCell>
+                  <TableCell>
+                    {user.role === 'ADMIN' ? 'admin' : 'cliente'}
+                  </TableCell>
+                  <TableCell>{user.stato ? 'ativo' : 'não ativo'}</TableCell>
+                  <TableCell>
+                    <Link href={`/dashboard/users/${user.username}`}>
+                      <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
+                        Ver
+                      </Button>
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
           </TableBody>
         </Table>
       </div>
