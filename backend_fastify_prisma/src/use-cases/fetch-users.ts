@@ -8,6 +8,11 @@ interface FetchUsersRequest {
 
 interface FetchUsersResponse {
   users: User[]
+  meta: {
+    pageIndex: number
+    perPage: number
+    totalCount: number
+  }
 }
 
 export class FetchUsers {
@@ -16,6 +21,7 @@ export class FetchUsers {
     page,
   }: FetchUsersRequest): Promise<FetchUsersResponse> {
     let users
+    let totalCount
 
     const perPage = 2
 
@@ -30,15 +36,33 @@ export class FetchUsers {
         take: perPage,
         skip: (page - 1) * perPage,
       })
+
+      totalCount = await prisma.user.count({
+        where: {
+          name: {
+            mode: 'insensitive',
+            startsWith: name,
+          },
+        },
+      })
     } else {
       users = await prisma.user.findMany({
         take: perPage,
         skip: (page - 1) * perPage,
       })
+
+      totalCount = await prisma.user.count()
+    }
+
+    const meta = {
+      pageIndex: page - 1,
+      perPage,
+      totalCount,
     }
 
     return {
       users,
+      meta,
     }
   }
 }

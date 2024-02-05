@@ -16,6 +16,11 @@ interface User {
 
 export interface FetchUsersResponse {
   users: User[]
+  meta: {
+    pageIndex: number
+    perPage: number
+    totalCount: number
+  }
 }
 
 export interface FetchUsersRequest {

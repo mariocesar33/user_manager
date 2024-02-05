@@ -1,9 +1,12 @@
+'use client'
+
 import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
 } from 'lucide-react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { Button } from './ui/button'
 
@@ -11,16 +14,24 @@ interface PaginationProps {
   pageIndex: number
   totalCount: number
   perPage: number
-  // onPageChange: (pageIndex: number) => Promise<void> | void
 }
 
 export function Pagination({
   pageIndex,
   perPage,
   totalCount,
-  // onPageChange,
 }: PaginationProps) {
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace } = useRouter()
+
   const pages = Math.ceil(totalCount / perPage) || 1
+
+  function handlePaginate(pageIndex: number) {
+    const params = new URLSearchParams(searchParams)
+    params.set('page', (pageIndex + 1).toString())
+    replace(`${pathname}?${params}`)
+  }
 
   return (
     <div className="flex items-center justify-between pl-5 pr-7">
@@ -34,7 +45,7 @@ export function Pagination({
         </div>
         <div className="flex items-center gap-2">
           <Button
-            // onClick={() => onPageChange(0)}
+            onClick={() => handlePaginate(0)}
             variant="outline"
             className="h-8 w-8 p-0"
             disabled={pageIndex === 0}
@@ -43,7 +54,7 @@ export function Pagination({
             <span className="sr-only">Primeira página</span>
           </Button>
           <Button
-            // onClick={() => onPageChange(pageIndex - 1)}
+            onClick={() => handlePaginate(pageIndex - 1)}
             variant="outline"
             className="h-8 w-8 p-0"
             disabled={pageIndex === 0}
@@ -52,7 +63,7 @@ export function Pagination({
             <span className="sr-only">Página anterior</span>
           </Button>
           <Button
-            // onClick={() => onPageChange(pageIndex + 1)}
+            onClick={() => handlePaginate(pageIndex + 1)}
             variant="outline"
             className="h-8 w-8 p-0"
             disabled={pages <= pageIndex + 1}
@@ -61,7 +72,7 @@ export function Pagination({
             <span className="sr-only">Próxima página</span>
           </Button>
           <Button
-            // onClick={() => onPageChange(pages - 1)}
+            onClick={() => handlePaginate(pages - 1)}
             variant="outline"
             className="h-8 w-8 p-0"
             disabled={pages <= pageIndex + 1}

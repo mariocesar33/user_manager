@@ -1,7 +1,11 @@
+'use client'
+
 import dayjs from 'dayjs'
 import { Plus } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { z } from 'zod'
 
 import { fetchUsers } from '@/actions/fetch-users'
 import { Pagination } from '@/components/pagination'
@@ -16,20 +20,23 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-interface UsersProps {
-  searchParams: {
-    q: string
-    page: string
-  }
-}
+export async function UserListingAndPagination() {
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const { replace } = useRouter()
 
-export default async function Users({ searchParams }: UsersProps) {
-  const { q, page } = searchParams
+  const params = new URLSearchParams(searchParams)
 
-  const query = q || ''
-  const pageIndex = page || '1'
+  const query = searchParams.get('q') || ''
+
+  const pageIndex = z.coerce.number().parse(searchParams.get('page') ?? '1')
 
   const { users, meta } = await fetchUsers({ name: query, pageIndex })
+
+  // function handlePaginate(pageIndex: number) {
+  //   params.set('page', (pageIndex + 1).toString())
+  //   replace(`${pathname}?${params}`)
+  // }
 
   return (
     <div className="mt-5 flex flex-col gap-2 rounded-sm bg-muted p-4">
@@ -101,6 +108,7 @@ export default async function Users({ searchParams }: UsersProps) {
       </div>
 
       <Pagination
+        // onPageChange={handlePaginate}
         pageIndex={meta.pageIndex}
         totalCount={meta.totalCount}
         perPage={meta.perPage}

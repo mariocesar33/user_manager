@@ -25,5 +25,7 @@ export async function fetchUsers(request: FastifyRequest, reply: FastifyReply) {
     return userWithoutPassword
   })
 
-  return reply.status(200).send({ users })
+  const meta = result.meta
+
+  return reply.status(200).send({ users, meta })
 }
