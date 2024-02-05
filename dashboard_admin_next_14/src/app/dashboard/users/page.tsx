@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Plus } from 'lucide-react'
+import { Plus, Search as SearchIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -83,13 +83,16 @@ export default async function Users({ searchParams }: UsersProps) {
                   <TableCell>{user.stato ? 'ativo' : 'não ativo'}</TableCell>
                   <TableCell>
                     <Link href={`/dashboard/users/${user.username}`}>
-                      <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                        Ver
+                      <Button
+                        className="h-8 border-2 border-muted-foreground"
+                        variant={'ghost'}
+                      >
+                        <SearchIcon className="h-4 w-4" />
                       </Button>
                     </Link>
                   </TableCell>
                   <TableCell>
-                    <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
+                    <Button className="h-8" variant={'destructive'}>
                       Delete
                     </Button>
                   </TableCell>

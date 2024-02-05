@@ -118,13 +118,13 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-  "name": "Jakeliny Gracielly",
-  "username": "jakeliny",
-  "email": "jakeliny@gmail.com",
+  "name": "Daniele Leão",
+  "username": "Danileao",
+  "email": "danileao@gmail.com",
   "password": "123456",
-  "phone": "21 994132-9999",
+  "phone": "21 994132-1111",
   "address": "Rio Grande do Sul",
   "role": "CLIENT",
   "stato": "true",
-  "avatarURL": "https://github.com/jakeliny.png"
+  "avatarURL": "https://github.com/danileao.png"
 }
