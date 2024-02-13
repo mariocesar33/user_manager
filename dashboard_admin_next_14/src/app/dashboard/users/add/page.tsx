@@ -1,3 +1,4 @@
+import { addUser } from '@/actions/user'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -12,13 +13,16 @@ import { Textarea } from '@/components/ui/textarea'
 
 export default function AddUser() {
   return (
-    <form className="mt-5 flex flex-col rounded-sm bg-muted p-4">
+    <form
+      action={addUser}
+      className="mt-5 flex flex-col rounded-sm bg-muted p-4"
+    >
       <div className="flex items-center justify-between">
         <div className="flex w-96 flex-col space-y-5">
           <Input
             required
             type="text"
-            name="username"
+            name="name"
             className="h-14"
             placeholder="Nome do utilizador"
           />
@@ -31,14 +35,14 @@ export default function AddUser() {
           />
 
           <div className="space-y-1">
-            <Label htmlFor="admin">É administrador?</Label>
-            <Select defaultValue="false" name="cat">
-              <SelectTrigger className="h-14" id="admin">
+            <Label htmlFor="role">Privilégio</Label>
+            <Select defaultValue="CLIENT" name="role">
+              <SelectTrigger className="h-14" id="role">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="true">Sim</SelectItem>
-                <SelectItem value="false">Não</SelectItem>
+                <SelectItem value="ADMIN">ADMIN</SelectItem>
+                <SelectItem value="CLIENT">CLIENT</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -58,13 +62,9 @@ export default function AddUser() {
             placeholder="Telefone"
           />
           <div className="space-y-1">
-            <Label htmlFor="active">Esta ativo?</Label>
-            <Select defaultValue="false" name="cat">
-              <SelectTrigger
-                defaultValue="default"
-                className="h-14"
-                id="active"
-              >
+            <Label htmlFor="stato">Esta ativo?</Label>
+            <Select defaultValue="true" name="stato">
+              <SelectTrigger defaultValue="default" className="h-14" id="stato">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -77,8 +77,8 @@ export default function AddUser() {
       </div>
 
       <Textarea
-        name="desc"
-        id="desc"
+        name="address"
+        id="address"
         placeholder="Endereço"
         className="mt-6 min-h-40"
       />

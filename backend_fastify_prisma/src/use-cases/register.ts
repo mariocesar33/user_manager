@@ -6,7 +6,6 @@ import { UserAlreadyExistsError } from './errors/user-already-exists-error'
 
 interface RegisterUseCaseRequest {
   name: string
-  username: string
   email: string
   password: string
   phone: string
@@ -23,7 +22,6 @@ interface RegisterUseCaseResponse {
 export class RegisterUseCase {
   async execute({
     name,
-    username,
     email,
     password,
     phone,
@@ -32,6 +30,9 @@ export class RegisterUseCase {
     stato,
     avatarURL,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
+    const indice = email.indexOf('@')
+    const username = email.substring(0, indice)
+
     const userExist = await prisma.user.findUnique({
       where: {
         username_email: {

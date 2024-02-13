@@ -14,11 +14,13 @@ export async function routes(app: FastifyInstance) {
   app.post('/users', register)
   app.post('/sessions', authenticate)
 
+  app.get('/me', { onRequest: [verifyJWT] }, profile)
+
   // app.patch('/token/refresh', refresh)
 
-  app.post('/user', { onRequest: [verifyJWT] }, createUser)
-  app.get('/me', { onRequest: [verifyJWT] }, profile)
+  app.post('/user', createUser)
   app.get('/user', fetchUsers)
 
+  app.post('/product', fetchProducts)
   app.get('/product', fetchProducts)
 }

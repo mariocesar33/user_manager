@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Plus, Search as SearchIcon } from 'lucide-react'
+import { Plus, Search as SearchIcon, User2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -63,13 +63,17 @@ export default async function Users({ searchParams }: UsersProps) {
               return (
                 <TableRow key={user.id}>
                   <TableCell className="flex items-center gap-2">
-                    <Image
-                      src={user.avatarURL}
-                      alt=""
-                      width={40}
-                      height={40}
-                      className="h-8 w-8 rounded-full"
-                    />
+                    {user.avatarURL ? (
+                      <Image
+                        src={user.avatarURL}
+                        alt=""
+                        width={40}
+                        height={40}
+                        className="h-8 w-8 rounded-full"
+                      />
+                    ) : (
+                      <User2 className="size-8 rounded-full bg-muted-foreground text-muted" />
+                    )}
 
                     <span className="capitalize">{user.name}</span>
                   </TableCell>

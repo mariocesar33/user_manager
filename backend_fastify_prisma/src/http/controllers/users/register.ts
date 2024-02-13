@@ -5,35 +5,24 @@ import { z } from 'zod'
 
 const registerBodySchema = z.object({
   name: z.string(),
-  username: z.string(),
   email: z.string().email(),
   password: z.string().min(6),
   phone: z.string(),
   address: z.string(),
   role: z.enum(['ADMIN', 'CLIENT']).default('CLIENT'),
   stato: z.coerce.boolean().default(true),
-  avatarURL: z.string().url(),
+  avatarURL: z.string().optional(),
 })
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
-  const {
-    name,
-    username,
-    email,
-    password,
-    phone,
-    address,
-    role,
-    stato,
-    avatarURL,
-  } = registerBodySchema.parse(request.body)
+  const { name, email, password, phone, address, role, stato, avatarURL } =
+    registerBodySchema.parse(request.body)
 
   try {
     const registerUseCase = new RegisterUseCase()
 
     await registerUseCase.execute({
       name,
-      username,
       email,
       password,
       phone,
