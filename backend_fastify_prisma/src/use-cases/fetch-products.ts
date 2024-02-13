@@ -1,13 +1,13 @@
 import { prisma } from '@/lib/prisma'
-import { User } from '@prisma/client'
+import { Product } from '@prisma/client'
 
-interface FetchUsersRequest {
-  name?: string
+interface FetchProductsRequest {
+  title?: string
   page: number
 }
 
-interface FetchUsersResponse {
-  users: User[]
+interface FetchProductsResponse {
+  products: Product[]
   meta: {
     pageIndex: number
     perPage: number
@@ -15,43 +15,43 @@ interface FetchUsersResponse {
   }
 }
 
-export class FetchUsers {
+export class FetchProducts {
   async execute({
-    name,
+    title,
     page,
-  }: FetchUsersRequest): Promise<FetchUsersResponse> {
-    let users
+  }: FetchProductsRequest): Promise<FetchProductsResponse> {
+    let products
     let totalCount
 
-    const perPage = 5
+    const perPage = 3
 
-    if (name) {
-      users = await prisma.user.findMany({
+    if (title) {
+      products = await prisma.product.findMany({
         where: {
-          name: {
+          title: {
             mode: 'insensitive',
-            startsWith: name,
+            startsWith: title,
           },
         },
         take: perPage,
         skip: (page - 1) * perPage,
       })
 
-      totalCount = await prisma.user.count({
+      totalCount = await prisma.product.count({
         where: {
-          name: {
+          title: {
             mode: 'insensitive',
-            startsWith: name,
+            startsWith: title,
           },
         },
       })
     } else {
-      users = await prisma.user.findMany({
+      products = await prisma.product.findMany({
         take: perPage,
         skip: (page - 1) * perPage,
       })
 
-      totalCount = await prisma.user.count()
+      totalCount = await prisma.product.count()
     }
 
     const meta = {
@@ -61,7 +61,7 @@ export class FetchUsers {
     }
 
     return {
-      users,
+      products,
       meta,
     }
   }

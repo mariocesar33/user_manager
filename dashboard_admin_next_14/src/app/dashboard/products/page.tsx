@@ -1,7 +1,9 @@
-import { Plus } from 'lucide-react'
+import dayjs from 'dayjs'
+import { Plus, Search as SearchIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { fetchProducts } from '@/actions/fetch-products'
 import { Pagination } from '@/components/pagination'
 import { Search } from '@/components/search'
 import { Button } from '@/components/ui/button'
@@ -14,9 +16,21 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-import iphone from '../../../public/iphone.jpg'
+interface ProductsProps {
+  searchParams: {
+    q: string
+    page: string
+  }
+}
 
-export default function Products() {
+export default async function Products({ searchParams }: ProductsProps) {
+  const { q, page } = searchParams
+
+  const query = q || ''
+  const pageIndex = page || '1'
+
+  const { products, meta } = await fetchProducts({ title: query, pageIndex })
+
   return (
     <div className="mt-5 flex flex-col gap-2 rounded-sm bg-muted p-4">
       <div className="flex items-center justify-between  pl-4 pr-7">
@@ -45,102 +59,52 @@ export default function Products() {
           </TableHeader>
 
           <TableBody>
-            <TableRow>
-              <TableCell className="flex items-center gap-2">
-                <Image
-                  src={iphone}
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 "
-                />
+            {products.map((product) => {
+              return (
+                <TableRow key={product.id}>
+                  <TableCell className="flex items-center gap-2">
+                    <Image
+                      src={product.imgURL}
+                      alt=""
+                      width={40}
+                      height={40}
+                      className="h-8 w-8 "
+                    />
 
-                <span>Iphone</span>
-              </TableCell>
-              <TableCell>Pro max</TableCell>
-              <TableCell>{(98000).toLocaleString('cv')}</TableCell>
-              <TableCell>30/01/2024</TableCell>
-              <TableCell>20</TableCell>
-              <TableCell>
-                <Link href="/dashboard/products/katxupa">
-                  <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                    Ver
-                  </Button>
-                </Link>
-              </TableCell>
-              <TableCell>
-                <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell className="flex items-center gap-2">
-                <Image
-                  src={iphone}
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 "
-                />
-
-                <span>Iphone</span>
-              </TableCell>
-              <TableCell>Pro max</TableCell>
-              <TableCell>{(98000).toLocaleString('cv')}</TableCell>
-              <TableCell>30/01/2024</TableCell>
-              <TableCell>20</TableCell>
-              <TableCell>
-                <Link href="/dashboard/products/katxupa">
-                  <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                    Ver
-                  </Button>
-                </Link>
-              </TableCell>
-              <TableCell>
-                <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell className="flex items-center gap-2">
-                <Image
-                  src={iphone}
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 "
-                />
-
-                <span>Iphone</span>
-              </TableCell>
-              <TableCell>Pro max</TableCell>
-              <TableCell>{(98000).toLocaleString('cv')}</TableCell>
-              <TableCell>30/01/2024</TableCell>
-              <TableCell>20</TableCell>
-              <TableCell>
-                <Button className="h-7 bg-green-600 text-white hover:bg-green-500">
-                  Ver
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button className="h-7 bg-red-600 text-white hover:bg-red-500">
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
+                    <span>{product.title}</span>
+                  </TableCell>
+                  <TableCell>{product.description}</TableCell>
+                  <TableCell>{product.price.toLocaleString('cv')}</TableCell>
+                  <TableCell>
+                    {dayjs(product.createdAt).format('DD/MM/YYYY')}
+                  </TableCell>
+                  <TableCell>{product.stock}</TableCell>
+                  <TableCell>
+                    <Link href={`/dashboard/users/${product.title}`}>
+                      <Button
+                        className="h-8 border-2 border-muted-foreground"
+                        variant={'ghost'}
+                      >
+                        <SearchIcon className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <Button className="h-8" variant={'destructive'}>
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
           </TableBody>
         </Table>
       </div>
 
       <Pagination
-        // onPageChange={handlePaginate}
-        pageIndex={0}
-        totalCount={100}
-        perPage={20}
+        pageIndex={meta.pageIndex}
+        totalCount={meta.totalCount}
+        perPage={meta.perPage}
       />
     </div>
   )
