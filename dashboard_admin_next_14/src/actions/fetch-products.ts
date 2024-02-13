@@ -33,7 +33,7 @@ export async function fetchProducts({
   pageIndex,
 }: FetchProductsRequest) {
   const response = await api.get<FetchProductsResponse>(
-    `/product?page=${pageIndex}&name=${title}`,
+    `/product?page=${pageIndex}&title=${title}`,
   )
 
   return response.data
